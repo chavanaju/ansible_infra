@@ -1,0 +1,17 @@
+---
+
+-hosts: centos
+ become: yes
+
+ tasks:
+  - name: Install apache pkg
+    yum:
+      name:httpd
+      state:present
+      use_backend: yum
+
+   - name: Start apache service
+     systemd:
+      name:httpd
+      state: started
+      enabled: yes
